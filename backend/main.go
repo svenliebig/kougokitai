@@ -3,34 +3,43 @@ package main
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/svenliebig/env"
+	"github.com/svenliebig/kougokitai/internal/themoviedb"
 )
 
-func main() {
+func init() {
 	err := env.Load()
 
 	if err != nil {
 		panic(err)
 	}
+}
 
-	fmt.Println(os.Getenv("THE_MOVIE_DB_API_KEY"))
+func main() {
 
-	s := Server[User, Principal]{
-		Authentication: auth{},
-		Authorization:  auth{},
+	s, err := themoviedb.SearchTVShows(context.Background(), "The Simpsons")
+
+	if err != nil {
+		panic(err)
 	}
 
-	r := Route{
-		Method:                 "GET",
-		Path:                   "/movies",
-		AuthenticationRequired: true,
-	}
+	fmt.Println(s)
 
-	s.Register(r, r)
-
-	s.Start(context.Background())
+	// s := Server[User, Principal]{
+	// 	Authentication: auth{},
+	// 	Authorization:  auth{},
+	// }
+	//
+	// r := Route{
+	// 	Method:                 "GET",
+	// 	Path:                   "/movies",
+	// 	AuthenticationRequired: true,
+	// }
+	//
+	// s.Register(r, r)
+	//
+	// s.Start(context.Background())
 }
 
 type Server[A any, P any] struct {
