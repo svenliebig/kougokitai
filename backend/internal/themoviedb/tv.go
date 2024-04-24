@@ -84,17 +84,17 @@ func SearchTVShows(ctx context.Context, query SearchTVQuery) (s response, err er
 	return
 }
 
-type pageableSeq struct {
+type searchTVShowsSeq struct {
 	page, totalPages, totalResults int
 	ctx                            context.Context
 	query                          SearchTVQuery
 }
 
 func SearchTVShowsSeq(ctx context.Context, query SearchTVQuery) seq.Seq[Series] {
-	return pageableSeq{ctx: ctx, query: query}
+	return searchTVShowsSeq{ctx: ctx, query: query}
 }
 
-func (p pageableSeq) Iterator() iter.Seq2[Series, error] {
+func (p searchTVShowsSeq) Iterator() iter.Seq2[Series, error] {
 	return func(yield func(Series, error) bool) {
 		if p.page == 0 {
 			p.page = 1
