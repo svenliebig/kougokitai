@@ -1,2 +1,4 @@
 github.com/svenliebig/env v0.0.0-20240422163953-dde4e4376816 h1:COZN7i9X85AganlqtldF7YdadwfHMMwUlkoS8OB3p6M=
 github.com/svenliebig/env v0.0.0-20240422163953-dde4e4376816/go.mod h1:NRVJQks5LBB604rUrTw36LKesNdsMRNtdIub1KpT080=
+github.com/svenliebig/seq v0.0.0-20240424164551-305228171065 h1:FhwN0u/rccDDoksCXdYeuGhp9aqIBYpOD4RRX/ac/eo=
+github.com/svenliebig/seq v0.0.0-20240424164551-305228171065/go.mod h1:8Pj9sdCOlnMPHVIycwuVN4R+Dq6oKq50LPAIfF8xwiw=

@@ -41,6 +41,7 @@ func Get(ctx context.Context, url string, o ...Option) (*http.Response, error) {
 		option.apply(req)
 	}
 
+	fmt.Printf("DEBUG: GET %s\n", url)
 	response, err := client.Do(req)
 
 	if err != nil {

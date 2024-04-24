@@ -6,6 +6,7 @@ import (
 
 	"github.com/svenliebig/env"
 	"github.com/svenliebig/kougokitai/internal/themoviedb"
+	"github.com/svenliebig/seq"
 )
 
 func init() {
@@ -18,13 +19,19 @@ func init() {
 
 func main() {
 
-	s, err := themoviedb.SearchTVShows(context.Background(), "The Simpsons")
+	s := themoviedb.SearchTVShowsSeq(context.Background(), themoviedb.SearchTVQuery{
+		Query: "game",
+	})
+
+	r, err := seq.Collect(seq.First(s, func(s themoviedb.Series) (bool, error) {
+		return s.ID == 114621, nil
+	}))
 
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(s)
+	fmt.Println(r)
 
 	// s := Server[User, Principal]{
 	// 	Authentication: auth{},
