@@ -13,8 +13,8 @@ import (
 	"github.com/svenliebig/kougokitai/routes"
 
 	_ "github.com/svenliebig/kougokitai/routes/callback"
-	_ "github.com/svenliebig/kougokitai/routes/login"
 	_ "github.com/svenliebig/kougokitai/routes/dashboard"
+	_ "github.com/svenliebig/kougokitai/routes/login"
 )
 
 func app() {
@@ -22,6 +22,7 @@ func app() {
 
 	middlewares := middleware.Combine(
 		middleware.Logging,
+		middleware.Session,
 	)
 
 	server := http.Server{

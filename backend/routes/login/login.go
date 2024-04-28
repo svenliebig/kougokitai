@@ -22,7 +22,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	s := session.Save(w, r)
+	s := session.Receive(r.Context())
 	s.Set("state", state)
 
 	auth := authenticator.Use(r.Context())

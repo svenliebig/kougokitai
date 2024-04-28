@@ -1,6 +1,7 @@
 package callback
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/svenliebig/kougokitai/authenticator"
@@ -17,9 +18,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	code := r.URL.Query().Get("code")
 	state := r.URL.Query().Get("state")
 
-	s := session.Save(w, r)
+	s := session.Receive(r.Context())
 
 	if s.Get("state") != state {
+		log.Printf("Invalid state parameter %q expected %q", state, s.Get("state"))
 		http.Error(w, "Invalid state parameter.", http.StatusBadRequest)
 		return
 	}
