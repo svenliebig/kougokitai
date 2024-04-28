@@ -13,7 +13,7 @@ func init() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	s := session.Save(w, r)
+	s := session.Receive(r.Context())
 	profile := s.Get("profile")
 
 	if profile == nil {

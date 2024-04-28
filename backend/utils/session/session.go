@@ -27,6 +27,10 @@ type session struct {
 	created int64
 }
 
+// TODO: this should only be called once to be honest, in the middleware
+//       it would be better to expose a function that can be used by the
+//       middleware to get the session, multiple calls to this function
+// 		   will create multiple sessions
 func Save(w http.ResponseWriter, r *http.Request) (s *session) {
 	s = get(r)
 
@@ -55,6 +59,13 @@ func (s *session) Set(key string, value any) {
 	s.values[key] = value
 }
 
+func Debug() {
+	lock.RLock()
+	defer lock.RUnlock()
+
+	log.Printf("sessions: %v", len(sessions))
+}
+
 func (s *session) Print() {
 	keys := make([]string, 0, len(s.values))
 
@@ -74,17 +85,18 @@ func (s *session) Get(key string) any {
 	return value
 }
 
-func get(r *http.Request) *session {
+// 
+func get(r *http.Request) (s *session) {
 	cookie, err := r.Cookie(sessionCookieName)
 
 	if errors.Is(err, http.ErrNoCookie) {
 		log.Println("no cookie present")
-		return nil
+		return
 	}
 
 	if err != nil {
 		log.Println("error getting cookie:", err)
-		return nil
+		return
 	}
 
 	lock.RLock()
@@ -93,14 +105,14 @@ func get(r *http.Request) *session {
 
 	if !ok {
 		log.Printf("no session found for cookie value %q", cookie.Value)
-		return nil
+		return
 	}
 
 	if s.ip != r.RemoteAddr {
 		log.Printf("session ip %q does not match request ip %q", s.ip, r.RemoteAddr)
-		clear(cookie.Value)
-		return nil
 	}
+
+	clear(cookie.Value)
 
 	return s
 }
