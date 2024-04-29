@@ -15,10 +15,8 @@ const sessionCookieName = "id"
 var lock = sync.RWMutex{}
 var sessions = map[string]*session{}
 
-// TODO: How to invalid a session by user privilege change? I should not have user data in session, without looking into the
-// session data.
+// TODO: How to invalid a session by user privilege change? I should not have user data in session, without looking into the session data?
 
-// TODO check mutl tabs session id handling
 // TODO implement a session timeout
 
 type session struct {
@@ -35,6 +33,7 @@ func Save(w http.ResponseWriter, r *http.Request) (s *session) {
 	s = get(r)
 
 	if s == nil {
+		// TODO: publish event for unique user request
 		s = create(r)
 	}
 
@@ -85,7 +84,6 @@ func (s *session) Get(key string) any {
 	return value
 }
 
-// 
 func get(r *http.Request) (s *session) {
 	cookie, err := r.Cookie(sessionCookieName)
 
@@ -109,6 +107,7 @@ func get(r *http.Request) (s *session) {
 	}
 
 	if s.ip != r.RemoteAddr {
+		// TODO: invalidate session because of ip change
 		log.Printf("session ip %q does not match request ip %q", s.ip, r.RemoteAddr)
 	}
 
