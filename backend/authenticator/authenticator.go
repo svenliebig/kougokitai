@@ -16,6 +16,7 @@ type Authenticator struct {
 }
 
 type Profile struct {
+	Id        string `json:"sid"`
 	Issuer    string `json:"iss"`
 	Subject   string `json:"sub"`
 	Audience  string `json:"aud"`
