@@ -39,11 +39,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var profile map[string]interface{}
+	var profile authenticator.Profile
 	if err := idToken.Claims(&profile); err != nil {
 		http.Error(w, "Internal server error.", http.StatusInternalServerError)
 		return
 	}
+
+	// is new user /welcome
+	// is existing user /dashboard
 
 	s.Set("profile", profile)
 	s.Set("access_token", token.AccessToken)

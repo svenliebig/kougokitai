@@ -15,6 +15,17 @@ type Authenticator struct {
 	oauth2.Config
 }
 
+type Profile struct {
+	Issuer    string `json:"iss"`
+	Subject   string `json:"sub"`
+	Audience  string `json:"aud"`
+	ExpiresAt int64  `json:"exp"`
+	IssuedAt  int64  `json:"iat"`
+	Name      string `json:"name"`
+	Nichname  string `json:"nickname"`
+	Picture   string `json:"picture"`
+}
+
 type authenticatorKey string
 
 var key authenticatorKey = "authenticator"
