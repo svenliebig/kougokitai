@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/svenliebig/kougokitai/authenticator"
+	"github.com/svenliebig/kougokitai/persistence"
 	"github.com/svenliebig/kougokitai/routes"
 	"github.com/svenliebig/kougokitai/utils/session"
 )
@@ -45,11 +46,26 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// is new user /welcome
-	// is existing user /dashboard
-
 	s.Set("profile", profile)
 	s.Set("access_token", token.AccessToken)
+
+	p := persistence.Receive(r.Context())
+
+	exists, err := p.UserExists(profile.Id)
+
+	if err != nil {
+		http.Error(w, "Internal server error.", http.StatusInternalServerError)
+		return
+	}
+
+	if !exists {
+		p.CreateUser(profile.Id)
+		w.Header().Set("Location", "/welcome")
+		w.WriteHeader(http.StatusTemporaryRedirect)
+		return
+	}
+	// is new user /welcome
+	// is existing user /dashboard
 
 	w.Header().Set("Location", "/dashboard")
 	w.WriteHeader(http.StatusTemporaryRedirect)
