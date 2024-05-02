@@ -23,6 +23,7 @@ func app() {
 	middlewares := middleware.Combine(
 		middleware.Logging,
 		middleware.Session,
+		middleware.Persistence,
 	)
 
 	server := http.Server{
