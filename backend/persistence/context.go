@@ -6,8 +6,10 @@ type key string
 
 var persistenceKey key = "persistence"
 
+var p Persistence = newInMemory()
+
 func Attach(ctx context.Context) context.Context {
-	return context.WithValue(ctx, persistenceKey, newInMemory())
+	return context.WithValue(ctx, persistenceKey, p)
 }
 
 func Receive(ctx context.Context) Persistence {
