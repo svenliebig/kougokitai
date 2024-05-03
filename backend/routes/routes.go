@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -22,6 +22,7 @@ func RegisterAuthenticatedRoute(path string, handler http.HandlerFunc) {
 		profile := s.Get("profile")
 
 		if profile == nil {
+			log.Println("could not find profile in session")
 			http.Error(w, "Unauthorized.", http.StatusUnauthorized)
 			return
 		}
@@ -31,6 +32,7 @@ func RegisterAuthenticatedRoute(path string, handler http.HandlerFunc) {
 		if p.ExpiresAt < time.Now().Unix() {
 			// TODO handle different, we should invalidate the session
 			// TODO is this the right place to handle this? I would see it in the session, but the session is stupid and does not know what data it holds
+			log.Println("session expired for profile ", p)
 			http.Error(w, "Unauthorized.", http.StatusUnauthorized)
 			return
 		}
