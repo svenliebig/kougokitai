@@ -15,6 +15,7 @@ import (
 	_ "github.com/svenliebig/kougokitai/routes/callback"
 	_ "github.com/svenliebig/kougokitai/routes/dashboard"
 	_ "github.com/svenliebig/kougokitai/routes/login"
+	_ "github.com/svenliebig/kougokitai/routes/tv"
 )
 
 func app() {
