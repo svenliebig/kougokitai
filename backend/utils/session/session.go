@@ -26,9 +26,10 @@ type session struct {
 }
 
 // TODO: this should only be called once to be honest, in the middleware
-//       it would be better to expose a function that can be used by the
-//       middleware to get the session, multiple calls to this function
-// 		   will create multiple sessions
+//
+//	      it would be better to expose a function that can be used by the
+//	      middleware to get the session, multiple calls to this function
+//			   will create multiple sessions
 func Save(w http.ResponseWriter, r *http.Request) (s *session) {
 	s = get(r)
 
@@ -151,6 +152,7 @@ func setHeader(w http.ResponseWriter, state string) {
 		HttpOnly: true,
 		Secure:   true,
 		SameSite: http.SameSiteLaxMode,
+		Path:     "/",
 	}
 
 	w.Header().Add("Set-Cookie", c.String())
