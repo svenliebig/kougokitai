@@ -19,7 +19,7 @@ type response struct {
 }
 
 type SearchTVQuery struct {
-	page                int
+	Page                int
 	year                int
 	first_air_date_year int
 	include_adult       bool
@@ -30,8 +30,8 @@ type SearchTVQuery struct {
 func (q SearchTVQuery) String() (r string) {
 	r = "?"
 
-	if q.page != 0 {
-		r += fmt.Sprintf("page=%d&", q.page)
+	if q.Page != 0 {
+		r += fmt.Sprintf("page=%d&", q.Page)
 	}
 
 	if q.year != 0 {
@@ -101,7 +101,7 @@ func (p searchTVShowsSeq) Iterator() iter.Seq2[Series, error] {
 		}
 
 		for {
-			p.query.page = p.page
+			p.query.Page = p.page
 			res, err := SearchTVShows(context.Background(), p.query)
 
 			if err != nil {
