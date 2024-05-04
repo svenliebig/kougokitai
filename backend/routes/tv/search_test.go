@@ -27,8 +27,6 @@ func TestRoutesTvSearch(t *testing.T) {
 
 		search(w, r)
 
-		// can I mock themoviedb.SearchTVShows?
-
 		assert.Equal(t, http.StatusOK, w.Code)
 		assert.Equal(t, "application/json", w.Header().Get("Content-Type"))
 		mockClient.AssertExpectations(t)
@@ -48,8 +46,6 @@ func TestRoutesTvSearch(t *testing.T) {
 
 		search(w, r)
 
-		// can I mock themoviedb.SearchTVShows?
-
 		assert.Equal(t, http.StatusOK, w.Code)
 		assert.Equal(t, "application/json", w.Header().Get("Content-Type"))
 		mockClient.AssertExpectations(t)
@@ -68,8 +64,6 @@ func TestRoutesTvSearch(t *testing.T) {
 		r = r.WithContext(themoviedb.Attach(r.Context(), mockClient))
 
 		search(w, r)
-
-		// can I mock themoviedb.SearchTVShows?
 
 		assert.Equal(t, http.StatusInternalServerError, w.Code)
 		assert.Equal(t, "application/json", w.Header().Get("Content-Type"))
