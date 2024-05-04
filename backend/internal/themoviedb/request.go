@@ -15,7 +15,7 @@ var (
 	bearer rest.Option
 )
 
-func request(ctx context.Context, path string) (*http.Response, error) {
+func (c *client) request(ctx context.Context, path string) (*http.Response, error) {
 	apiKey := os.Getenv("THE_MOVIE_DB_API_KEY")
 	bearer = rest.WithBearer{
 		Token: apiKey,

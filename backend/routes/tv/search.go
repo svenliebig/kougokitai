@@ -24,7 +24,8 @@ func search(w http.ResponseWriter, r *http.Request) {
 		p = 1
 	}
 
-	response, err := themoviedb.SearchTVShows(r.Context(), themoviedb.SearchTVQuery{
+	c := themoviedb.Receive(r.Context())
+	response, err := c.SearchTVShows(r.Context(), themoviedb.SearchTVShowsQuery{
 		Query: q,
 		Page:  p,
 	})

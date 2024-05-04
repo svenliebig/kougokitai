@@ -25,6 +25,7 @@ func app() {
 		middleware.Logging,
 		middleware.Session,
 		middleware.Persistence,
+		middleware.ThemoviedbClient,
 	)
 
 	server := http.Server{

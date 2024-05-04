@@ -11,14 +11,14 @@ import (
 	"github.com/svenliebig/seq"
 )
 
-type response struct {
+type SearchTVShowsResponse struct {
 	Page         int      `json:"page"`
 	Results      []Series `json:"results"`
 	TotalPages   int      `json:"total_pages"`
 	TotalResults int      `json:"total_results"`
 }
 
-type SearchTVQuery struct {
+type SearchTVShowsQuery struct {
 	Page                int
 	year                int
 	first_air_date_year int
@@ -27,7 +27,7 @@ type SearchTVQuery struct {
 	Query               string
 }
 
-func (q SearchTVQuery) String() (r string) {
+func (q SearchTVShowsQuery) String() (r string) {
 	r = "?"
 
 	if q.Page != 0 {
@@ -57,8 +57,8 @@ func (q SearchTVQuery) String() (r string) {
 	return
 }
 
-func SearchTVShows(ctx context.Context, query SearchTVQuery) (s response, err error) {
-	res, err := request(ctx, "/search/tv"+query.String())
+func (c *client) SearchTVShows(ctx context.Context, query SearchTVShowsQuery) (s SearchTVShowsResponse, err error) {
+	res, err := c.request(ctx, "/search/tv"+query.String())
 
 	if err != nil {
 		err = fmt.Errorf("error while trying to search for tv shows: %w", err)
@@ -87,10 +87,11 @@ func SearchTVShows(ctx context.Context, query SearchTVQuery) (s response, err er
 type searchTVShowsSeq struct {
 	page, totalPages, totalResults int
 	ctx                            context.Context
-	query                          SearchTVQuery
+	query                          SearchTVShowsQuery
+	client                         *client
 }
 
-func SearchTVShowsSeq(ctx context.Context, query SearchTVQuery) seq.Seq[Series] {
+func (c *client) SearchTVShowsSeq(ctx context.Context, query SearchTVShowsQuery) seq.Seq[Series] {
 	return searchTVShowsSeq{ctx: ctx, query: query}
 }
 
@@ -102,7 +103,7 @@ func (p searchTVShowsSeq) Iterator() iter.Seq2[Series, error] {
 
 		for {
 			p.query.Page = p.page
-			res, err := SearchTVShows(context.Background(), p.query)
+			res, err := p.client.SearchTVShows(context.Background(), p.query)
 
 			if err != nil {
 				yield(Series{}, err)
