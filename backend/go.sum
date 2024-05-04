@@ -16,13 +16,13 @@ github.com/google/go-cmp v0.5.9/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeN
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
-github.com/stretchr/objx v0.5.2 h1:xuMeJ0Sdp5ZMRXx/aWO6RZxdr3beISkG5/G/aIRr3pY=
-github.com/stretchr/objx v0.5.2/go.mod h1:FRsXN1f5AsAjCGJKqEizvkpNtU+EGNCLh3NxZ/8L+MA=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
 github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 github.com/svenliebig/env v0.0.0-20240422163953-dde4e4376816 h1:COZN7i9X85AganlqtldF7YdadwfHMMwUlkoS8OB3p6M=
 github.com/svenliebig/env v0.0.0-20240422163953-dde4e4376816/go.mod h1:NRVJQks5LBB604rUrTw36LKesNdsMRNtdIub1KpT080=
+github.com/svenliebig/env v0.0.0-20240504074745-2a7ebb605cc1 h1:pp9RU8F98bl4j3DC8wksunqKzl55c2+fVJSwO6csaTQ=
+github.com/svenliebig/env v0.0.0-20240504074745-2a7ebb605cc1/go.mod h1:NRVJQks5LBB604rUrTw36LKesNdsMRNtdIub1KpT080=
 github.com/svenliebig/seq v0.0.0-20240424164551-305228171065 h1:FhwN0u/rccDDoksCXdYeuGhp9aqIBYpOD4RRX/ac/eo=
 github.com/svenliebig/seq v0.0.0-20240424164551-305228171065/go.mod h1:8Pj9sdCOlnMPHVIycwuVN4R+Dq6oKq50LPAIfF8xwiw=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
