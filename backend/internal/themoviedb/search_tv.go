@@ -13,7 +13,7 @@ import (
 
 type SearchTVShowsResponse struct {
 	Page         int      `json:"page"`
-	Results      []SearchSeries `json:"results"`
+	Results      []Series `json:"results"`
 	TotalPages   int      `json:"total_pages"`
 	TotalResults int      `json:"total_results"`
 }
@@ -91,12 +91,12 @@ type searchTVShowsSeq struct {
 	client                         *client
 }
 
-func (c *client) SearchTVShowsSeq(ctx context.Context, query SearchTVShowsQuery) seq.Seq[SearchSeries] {
+func (c *client) SearchTVShowsSeq(ctx context.Context, query SearchTVShowsQuery) seq.Seq[Series] {
 	return searchTVShowsSeq{ctx: ctx, query: query}
 }
 
-func (p searchTVShowsSeq) Iterator() iter.Seq2[SearchSeries, error] {
-	return func(yield func(SearchSeries, error) bool) {
+func (p searchTVShowsSeq) Iterator() iter.Seq2[Series, error] {
+	return func(yield func(Series, error) bool) {
 		if p.page == 0 {
 			p.page = 1
 		}
@@ -106,7 +106,7 @@ func (p searchTVShowsSeq) Iterator() iter.Seq2[SearchSeries, error] {
 			res, err := p.client.SearchTVShows(context.Background(), p.query)
 
 			if err != nil {
-				yield(SearchSeries{}, err)
+				yield(Series{}, err)
 				return
 			}
 
