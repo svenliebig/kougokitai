@@ -1,12 +1,16 @@
-package persistence
+package inmemory
 
-import "log"
+import (
+	"log"
+
+	"github.com/svenliebig/kougokitai/persistence"
+)
 
 type inmemory struct {
 	users []string
 }
 
-func newInMemory() Persistence {
+func newInMemory() persistence.Persistence {
 	return &inmemory{}
 }
 
@@ -26,4 +30,8 @@ func (i *inmemory) CreateUser(id string) error {
 	log.Printf("creating user '%s'", id)
 	i.users = append(i.users, id)
 	return nil
+}
+
+func init() {
+	persistence.Register(newInMemory())
 }
