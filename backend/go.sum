@@ -25,6 +25,8 @@ github.com/svenliebig/env v0.0.0-20240422163953-dde4e4376816 h1:COZN7i9X85Aganlq
 github.com/svenliebig/env v0.0.0-20240422163953-dde4e4376816/go.mod h1:NRVJQks5LBB604rUrTw36LKesNdsMRNtdIub1KpT080=
 github.com/svenliebig/env v0.0.0-20240504074745-2a7ebb605cc1 h1:pp9RU8F98bl4j3DC8wksunqKzl55c2+fVJSwO6csaTQ=
 github.com/svenliebig/env v0.0.0-20240504074745-2a7ebb605cc1/go.mod h1:NRVJQks5LBB604rUrTw36LKesNdsMRNtdIub1KpT080=
+github.com/svenliebig/query v0.0.0-20240505085009-e3e1d9c40526 h1:pcN4sZoPEhbs6jNNgxF69ot+54nt2E9GGOU1R/jZiuQ=
+github.com/svenliebig/query v0.0.0-20240505085009-e3e1d9c40526/go.mod h1:Mdw8/vb7b9JiDF7IMy5GY4uq1vrMDCBIaa2qagl1pfY=
 github.com/svenliebig/seq v0.0.0-20240424164551-305228171065 h1:FhwN0u/rccDDoksCXdYeuGhp9aqIBYpOD4RRX/ac/eo=
 github.com/svenliebig/seq v0.0.0-20240424164551-305228171065/go.mod h1:8Pj9sdCOlnMPHVIycwuVN4R+Dq6oKq50LPAIfF8xwiw=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=

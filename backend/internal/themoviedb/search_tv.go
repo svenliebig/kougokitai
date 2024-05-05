@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"io"
 	"iter"
-	"net/url"
 
+	"github.com/svenliebig/query"
 	"github.com/svenliebig/seq"
 )
 
@@ -19,42 +19,20 @@ type SearchTVShowsResponse struct {
 }
 
 type SearchTVShowsQuery struct {
-	Page                int
-	year                int
-	first_air_date_year int
-	include_adult       bool
-	language            string
-	Query               string
+	Page                int    `query:"page"`
+	year                int    `query:"year"`
+	first_air_date_year int    `query:"first_air_date_year"`
+	include_adult       bool   `query:"include_adult"`
+	language            string `query:"language"`
+	Query               string `query:"query"`
 }
 
 func (q SearchTVShowsQuery) String() (r string) {
-	r = "?"
-
-	if q.Page != 0 {
-		r += fmt.Sprintf("page=%d&", q.Page)
+	if q.Page == 0 {
+		q.Page = 1
 	}
 
-	if q.year != 0 {
-		r += fmt.Sprintf("year=%d&", q.year)
-	}
-
-	if q.first_air_date_year != 0 {
-		r += fmt.Sprintf("first_air_date_year=%d&", q.first_air_date_year)
-	}
-
-	if q.include_adult {
-		r += "include_adult=true&"
-	}
-
-	if q.language != "" {
-		r += fmt.Sprintf("language=%s&", q.language)
-	}
-
-	if q.Query != "" {
-		r += fmt.Sprintf("query=%s&", url.QueryEscape(q.Query))
-	}
-
-	return
+	return "?" + query.Stringify(q)
 }
 
 func (c *client) SearchTVShows(ctx context.Context, query SearchTVShowsQuery) (s SearchTVShowsResponse, err error) {

@@ -8,7 +8,10 @@ require (
 	golang.org/x/oauth2 v0.15.0
 )
 
-require github.com/stretchr/objx v0.5.2 // indirect
+require (
+	github.com/stretchr/objx v0.5.2 // indirect
+	github.com/svenliebig/query v0.0.0-20240505085009-e3e1d9c40526 // indirect
+)
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
