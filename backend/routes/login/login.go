@@ -25,7 +25,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	s := session.Receive(r.Context())
 	s.Set("state", state)
 
-	auth := authenticator.Use(r.Context())
+	auth := authenticator.Receive(r.Context())
 
 	w.Header().Set("Location", auth.AuthCodeURL(state))
 	w.WriteHeader(http.StatusTemporaryRedirect)

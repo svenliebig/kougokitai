@@ -31,7 +31,7 @@ type authenticatorKey string
 
 var key authenticatorKey = "authenticator"
 
-func Provide(ctx context.Context) context.Context {
+func Attach(ctx context.Context) context.Context {
 	auth, err := New()
 
 	if err != nil {
@@ -41,7 +41,7 @@ func Provide(ctx context.Context) context.Context {
 	return context.WithValue(ctx, key, auth)
 }
 
-func Use(ctx context.Context) *Authenticator {
+func Receive(ctx context.Context) *Authenticator {
 	return ctx.Value(key).(*Authenticator)
 }
 

@@ -15,7 +15,7 @@ func TestCallback(t *testing.T) {
 		w := httptest.NewRecorder()
 		r := httptest.NewRequest(http.MethodGet, "/callback", nil)
 
-		r = r.WithContext(authenticator.Provide(r.Context()))
+		r = r.WithContext(authenticator.Attach(r.Context()))
 		r = r.WithContext(session.Attach(r.Context(), session.Save(w, r)))
 
 		handler(w, r)
@@ -30,7 +30,7 @@ func TestCallback(t *testing.T) {
 
 		s := session.Save(w, r)
 		s.Set("state", "hello")
-		r = r.WithContext(authenticator.Provide(r.Context()))
+		r = r.WithContext(authenticator.Attach(r.Context()))
 		r = r.WithContext(session.Attach(r.Context(), s))
 
 		handler(w, r)

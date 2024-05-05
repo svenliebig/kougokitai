@@ -15,7 +15,7 @@ func init() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	auth := authenticator.Use(r.Context())
+	auth := authenticator.Receive(r.Context())
 	code := r.URL.Query().Get("code")
 	state := r.URL.Query().Get("state")
 

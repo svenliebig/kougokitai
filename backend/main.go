@@ -19,7 +19,7 @@ import (
 )
 
 func app() {
-	ctx := authenticator.Provide(context.Background())
+	ctx := authenticator.Attach(context.Background())
 
 	middlewares := middleware.Combine(
 		middleware.Logging,
