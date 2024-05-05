@@ -30,7 +30,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	token, err := auth.Exchange(r.Context(), code)
 
 	if err != nil {
-		http.Error(w, "Failed to convert an authorization code into a token.", http.StatusUnauthorized)
+		http.Error(w, "Unauthorized request.", http.StatusUnauthorized)
 		return
 	}
 
@@ -64,8 +64,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusTemporaryRedirect)
 		return
 	}
-	// is new user /welcome
-	// is existing user /dashboard
 
 	w.Header().Set("Location", "/dashboard")
 	w.WriteHeader(http.StatusTemporaryRedirect)
