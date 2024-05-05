@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/svenliebig/kougokitai/internal/rest"
+	"github.com/svenliebig/kougokitai/utils/rest"
 )
 
 const base = "https://api.themoviedb.org/3"
