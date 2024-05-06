@@ -21,8 +21,6 @@ github.com/stretchr/objx v0.5.2/go.mod h1:FRsXN1f5AsAjCGJKqEizvkpNtU+EGNCLh3NxZ/
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
 github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
-github.com/svenliebig/env v0.0.0-20240422163953-dde4e4376816 h1:COZN7i9X85AganlqtldF7YdadwfHMMwUlkoS8OB3p6M=
-github.com/svenliebig/env v0.0.0-20240422163953-dde4e4376816/go.mod h1:NRVJQks5LBB604rUrTw36LKesNdsMRNtdIub1KpT080=
 github.com/svenliebig/env v0.0.0-20240504074745-2a7ebb605cc1 h1:pp9RU8F98bl4j3DC8wksunqKzl55c2+fVJSwO6csaTQ=
 github.com/svenliebig/env v0.0.0-20240504074745-2a7ebb605cc1/go.mod h1:NRVJQks5LBB604rUrTw36LKesNdsMRNtdIub1KpT080=
 github.com/svenliebig/query v0.0.0-20240505085009-e3e1d9c40526 h1:pcN4sZoPEhbs6jNNgxF69ot+54nt2E9GGOU1R/jZiuQ=

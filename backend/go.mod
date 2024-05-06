@@ -5,13 +5,11 @@ go 1.22.0
 require (
 	github.com/coreos/go-oidc/v3 v3.9.0
 	github.com/svenliebig/env v0.0.0-20240504074745-2a7ebb605cc1
+	github.com/svenliebig/query v0.0.0-20240505085009-e3e1d9c40526
 	golang.org/x/oauth2 v0.15.0
 )
 
-require (
-	github.com/stretchr/objx v0.5.2 // indirect
-	github.com/svenliebig/query v0.0.0-20240505085009-e3e1d9c40526 // indirect
-)
+require github.com/stretchr/objx v0.5.2 // indirect
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
