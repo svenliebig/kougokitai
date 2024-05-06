@@ -9,7 +9,7 @@ import (
 
 func ThemoviedbClient(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		c := themoviedb.NewClient(os.Getenv("THEMOVIEDB_API_KEY"))
+		c := themoviedb.NewClient(os.Getenv("THE_MOVIE_DB_API_KEY"))
 		next.ServeHTTP(w, r.WithContext(themoviedb.Attach(r.Context(), c)))
 	})
 }

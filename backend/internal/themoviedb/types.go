@@ -97,9 +97,25 @@ type Series struct {
 		Iso6391     string `json:"iso_639_1"`
 		Name        string `json:"name"`
 	} `json:"spoken_languages"`
-	Status      string  `json:"status"`
-	Tagline     string  `json:"tagline"`
-	Type        string  `json:"type"`
-	VoteAverage float64 `json:"vote_average"`
-	VoteCount   int     `json:"vote_count"`
+	Status        string  `json:"status"`
+	Tagline       string  `json:"tagline"`
+	Type          string  `json:"type"`
+	VoteAverage   float64 `json:"vote_average"`
+	VoteCount     int     `json:"vote_count"`
+	EpisodeGroups struct {
+		Results []struct {
+			Description  string `json:"description"`
+			EpisodeCount int    `json:"episode_count"`
+			GroupCount   int    `json:"group_count"`
+			ID           string `json:"id"`
+			Name         string `json:"name"`
+			Network      struct {
+				ID            int    `json:"id"`
+				LogoPath      string `json:"logo_path"`
+				Name          string `json:"name"`
+				OriginCountry string `json:"origin_country"`
+			} `json:"network"`
+			Type int `json:"type"`
+		} `json:"results"`
+	} `json:"episode_groups"`
 }
