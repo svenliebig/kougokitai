@@ -1,6 +1,8 @@
 package themoviedb
 
-import "context"
+import (
+	"context"
+)
 
 type Client interface {
 	SearchTVShows(context.Context, SearchTVShowsQuery) (s SearchTVShowsResponse, err error)

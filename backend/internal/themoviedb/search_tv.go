@@ -32,7 +32,7 @@ func (q SearchTVShowsQuery) String() (r string) {
 		q.Page = 1
 	}
 
-	return "?" + query.Stringify(q)
+	return "?" + query.Stringify(q, query.SkipEmpty{})
 }
 
 func (c *client) SearchTVShows(ctx context.Context, query SearchTVShowsQuery) (s SearchTVShowsResponse, err error) {

@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"os"
 
 	"github.com/svenliebig/kougokitai/utils/rest"
 )
@@ -16,7 +15,7 @@ var (
 )
 
 func (c *client) request(ctx context.Context, path string) (*http.Response, error) {
-	apiKey := os.Getenv("THE_MOVIE_DB_API_KEY")
+	apiKey := c.apiKey
 	bearer = rest.WithBearer{
 		Token: apiKey,
 	}
