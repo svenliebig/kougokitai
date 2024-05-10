@@ -27,7 +27,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	token, err := auth.Exchange(r.Context(), code)
+	token, err := auth.ExchangeCode(r.Context(), code)
 
 	if err != nil {
 		http.Error(w, "Unauthorized request.", http.StatusUnauthorized)

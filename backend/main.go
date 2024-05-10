@@ -21,7 +21,13 @@ import (
 )
 
 func app() {
-	ctx := authenticator.Attach(context.Background())
+	auth, err := authenticator.New()
+
+	if err != nil {
+		panic(err)
+	}
+
+	ctx := authenticator.Attach(context.Background(), auth)
 
 	middlewares := middleware.Combine(
 		middleware.Logging,
