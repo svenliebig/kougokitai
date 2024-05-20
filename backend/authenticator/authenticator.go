@@ -15,11 +15,6 @@ type Authenticator struct {
 	oauth2.Config
 }
 
-type AuthenticatorI interface {
-	ExchangeCode(context.Context, string) (*oauth2.Token, error)
-	VerifyIDToken(context.Context, *oauth2.Token) (*oidc.IDToken, error)
-}
-
 type Profile struct {
 	Id        string `json:"sid"`
 	Issuer    string `json:"iss"`
@@ -36,16 +31,16 @@ type authenticatorKey string
 
 var key authenticatorKey = "authenticator"
 
-func Attach(ctx context.Context, auth AuthenticatorI) context.Context {
+func Attach(ctx context.Context, auth *Authenticator) context.Context {
 	return context.WithValue(ctx, key, auth)
 }
 
-func Receive(ctx context.Context) AuthenticatorI {
-	return ctx.Value(key).(AuthenticatorI)
+func Receive(ctx context.Context) *Authenticator {
+	return ctx.Value(key).(*Authenticator)
 }
 
 // New instantiates the *Authenticator.
-func New() (AuthenticatorI, error) {
+func New() (*Authenticator, error) {
 	provider, err := oidc.NewProvider(
 		context.Background(),
 		"https://"+os.Getenv("AUTH0_DOMAIN")+"/",
@@ -67,10 +62,6 @@ func New() (AuthenticatorI, error) {
 		Provider: provider,
 		Config:   conf,
 	}, nil
-}
-
-func (a *Authenticator) ExchangeCode(ctx context.Context, code string) (*oauth2.Token, error) {
-	return a.Exchange(ctx, code)
 }
 
 // VerifyIDToken verifies that an *oauth2.Token is a valid *oidc.IDToken.

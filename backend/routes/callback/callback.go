@@ -27,15 +27,17 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	token, err := auth.ExchangeCode(r.Context(), code)
+	token, err := auth.Exchange(r.Context(), code)
 
 	if err != nil {
+		log.Printf("Failed to exchange token: %v", err)
 		http.Error(w, "Unauthorized request.", http.StatusUnauthorized)
 		return
 	}
 
 	idToken, err := auth.VerifyIDToken(r.Context(), token)
 	if err != nil {
+		log.Printf("Failed to verify ID Token: %v", err)
 		http.Error(w, "Failed to verify ID Token.", http.StatusInternalServerError)
 		return
 	}
